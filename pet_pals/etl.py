@@ -26,13 +26,3 @@ for s in source_data:
     new_pet = Pet(**s)
     session.add(new_pet)
 session.commit()
-
-# Pandas removes the sequential properties of the id, so using to_sql
-# will result in our not begin able to add data without explicitly specifying
-# the id.
-# pets_df = pd.read_sql(SOURCE_SQL, source_engine, index_col=INDEX_COLUMN)
-# pets_df.to_sql(
-#     TABLE_NAME, target_engine, if_exists='replace', index_label=INDEX_COLUMN)
-# to_sql removes PKs (https://stackoverflow.com/q/50469391)
-# target_engine.execute(
-#     f'ALTER TABLE {TABLE_NAME} ADD PRIMARY KEY ({INDEX_COLUMN});')
