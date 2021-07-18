@@ -20,7 +20,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///../etl/pets.sqlite"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-from .models import Pet
+from models import Pet
 
 
 #################################################
