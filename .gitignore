@@ -1,3 +1,7 @@
+# Files containing passwords:
+env.sh
+
+# Emacs files...because Kourt
 *~
 
 # Byte-compiled / optimized / DLL files

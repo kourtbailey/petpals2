@@ -20,7 +20,7 @@
 
 * **Files:** [Pet Pals app](./Starter)
 
-* On Github, create a new repo called **Pet_Pals** and clone it to your desktop.
+* On Github, create a new repo called **Pet_Pals**, *adding `env.sh` to your `.gitignore`* and clone it to your desktop.
 
 * Add the starter files to this repo.
 
@@ -62,8 +62,9 @@
   source ./env.sh
   ```
 
-#### Note 1: Windows `cmd` and PowerShell use legacy MS-DOS syntax that is out of scope for the bootcamp
-#### Note 2: you will need to re-run this command (as well as re-activating your venv) when you close your terminal
+### Note 1: Windows `cmd` and PowerShell use legacy MS-DOS syntax that is out of scope for the bootcamp
+### Note 2: you will need to re-run this command (as well as re-activating your venv) when you close your terminal
+### Within the file, we will set a few environment variables : DATABASE_URL (on the server, Heroku will set this atuom
 
 
 * You can test the application by running the following in your command line.
