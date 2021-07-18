@@ -152,3 +152,5 @@
 * Once your build is successful, you can open the application using **Open App** on the webpage.
 
 * **Note:** When adding the pet's longitude, make sure you enter the negative value; otherwise, the data won't be populated on the US map.
+
+* In `app.py`, we are mixing front-end and API code in the same file for simplicity.  Be sure to keep all of your API routes together and prefixed with `/api/` and all of your frontend routes together with no prefix.
