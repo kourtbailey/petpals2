@@ -108,17 +108,13 @@
 
     ![Heroku connect](Images/Heroku_Connect.png)
 
-  * Next, navigate to the **Manual deploy** section below, and click **Deploy Branch**.
-
-    ![Heroku deploy](Images/Heroku_Deploy.png)
-
   * Once you see the "Your app was successfully deployed" message, you can click on **View** to launch your Pet Pals webpage.
 
     ![Heroku successful deployment](Images/Heroku_Successful_Deploy.png)
 
     * **Note:** The database has not been set up yet, so there is one more step before it is fully functioning.
 
-#### Part 4: Preparing the Database
+#### Part 4: Preparing the Database [TODO this will be changed]
 
 * After creating a new app on Heroku, navigate to **Resources**:
 

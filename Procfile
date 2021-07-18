@@ -1,2 +1,2 @@
-release: python ../etl/etl.py
+release: python etl/etl.py
 web: gunicorn app:app
