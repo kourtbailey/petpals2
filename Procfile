@@ -1,2 +1,2 @@
 release: python etl/etl.py
-web: gunicorn app:app
+web: gunicorn pet_pals:app
