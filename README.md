@@ -64,7 +64,7 @@
 
 ### Note 1: Windows `cmd` and PowerShell use legacy MS-DOS syntax that is out of scope for the bootcamp
 ### Note 2: you will need to re-run this command (as well as re-activating your venv) when you close your terminal
-### Within the file, we will set a few environment variables : DATABASE_URL (on the server, Heroku will set this atuom
+### Within the file, we will set a few environment variables : DATABASE_URL (on the server, Heroku will set this automatically...and change it periodically), and also FLASK_APP so that we don't have to specify it in our `flask run` command.
 
 
 * You can test the application by running the following in your command line.
