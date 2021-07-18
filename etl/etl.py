@@ -17,3 +17,6 @@ pets_df = pd.read_sql(SOURCE_SQL, source_engine, index_col=INDEX_COLUMN)
 target_engine = create_engine(TARGET_DATABASE_URL)
 pets_df.to_sql(
     TABLE_NAME, target_engine, if_exists='replace', index_label=INDEX_COLUMN)
+# to_sql removes PKs (https://stackoverflow.com/q/50469391)
+target_engine.execute(
+    f'ALTER TABLE {TABLE_NAME} ADD PRIMARY KEY ({INDEX_COLUMN});')
