@@ -5,22 +5,26 @@ from flask import (
     jsonify,
     request,
     redirect)
-from flask_sqlalchemy import SQLAlchemy
+
+from ..models import Pet, db
 
 
 #################################################
-# Flask Setup
+# Flask & Database Setup
 #################################################
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = (
+        os.environ.get('DATABASE_URL')
+        .replace('postgres://', 'postgresql://', 1)
+    )
+    # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///../etl/pets.sqlite"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.init_app(app)
+    return app
 
-#################################################
-# Database Setup
-#################################################
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///../etl/pets.sqlite"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-from .models import Pet
+
+app = create_app()
 
 
 #################################################

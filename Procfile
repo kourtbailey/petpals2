@@ -1,2 +1,2 @@
-release: python pet_pals/etl.py
-web: gunicorn pet_pals.app:app
+release: python -m pet_pals.etl.etl
+web: gunicorn pet_pals.app.app:app
