@@ -15,8 +15,8 @@
 
   1. Creating a repo for the application
   2. Preparing the repo with additional configuration files (`Procfile` and `requirements.txt`)
-  3. Creating the Heroku application
-  4. Preparing the Heroku database
+  3. Creating the Heroku application and provisioning a database
+  4. Configuring the Heroku deployment
 
 #### Part 1: Create a New Repo
 
@@ -50,11 +50,11 @@
 
 * Next, we will use `requirements.txt`, which is a list of the Python packages required to run the app that we will use locally and o Heroku will use this file to install all of the app's dependencies.  Locally, install dependencies using `pip install -U -r requirements.txt`.
 
-** We have prepared a sample `requirements.txt` file for you.  Do not manually run `pip install package-name`: instead, add files to `requirements.txt` and re-run `pip install -U -r requirements.txt`.
-** Gunicorn is a high-performance web server that can run your Flask app in a production environment
-** Because this app will be using Postgres, we will install `psycopg2` with `psycopg2-binary` (in a serious production environment, ask your seniors about the difference between psycopg2 and psycopg2-binary).
-** Flask: because this is a Flask app :)
-** Flask-SQLAlchemy: if you want to use SQLAlchemy
+  * We have prepared a sample `requirements.txt` file for you.  Do not manually run `pip install package-name`: instead, add lines to `requirements.txt` and re-run `pip install -U -r requirements.txt`.
+    * Gunicorn is a high-performance web server that can run your Flask app in a production environment
+    * Because this app will be using Postgres, we will install `psycopg2` with `psycopg2-binary` (in a serious production environment, ask your seniors about the difference between psycopg2 and psycopg2-binary).
+    * Flask: because this is a Flask app :)
+    * Flask-SQLAlchemy: if you want to use SQLAlchemy
 
 ** There is a command `pip freeze` that will generate a list of the currently-installed dependencies, which should be the same as requirements.txt.  To uninstall everything and start fresh, run `pip freeze | xargs pip uninstall -y` or just delete and re-cretate the virtualenv.
 ** It is really important to make sure that all of your requirements are in `requirements.txt`
