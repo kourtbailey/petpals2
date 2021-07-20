@@ -45,7 +45,7 @@
   * **Note:** If you run into issues, try the following command instead.
 
     ```sh
-    source activate pet_pals_env
+    source pet_pals_env/bin/activate
     ```
 
 * Next, we will use `requirements.txt`, which is a list of the Python packages required to run the app that we will use locally and o Heroku will use this file to install all of the app's dependencies.  Locally, install dependencies using `pip install -U -r requirements.txt`.
