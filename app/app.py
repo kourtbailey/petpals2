@@ -1,3 +1,4 @@
+# import necessary libraries
 import os
 from flask import (
     Flask,
@@ -5,30 +6,32 @@ from flask import (
     jsonify,
     request,
     redirect)
-
-from ..models import Pet, db
+from flask_sqlalchemy import SQLAlchemy
 
 
 #################################################
-# Flask & Database Setup
+# Flask Setup
 #################################################
-def create_app():
-    app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = (
-        os.environ.get('DATABASE_URL')
-        .replace('postgres://', 'postgresql://', 1)
+app = Flask(__name__)
+
+#################################################
+# Database Setup
+#################################################
+
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    os.environ.get('DATABASE_URL')
+    .replace('postgres://', 'postgresql://', 1)
     )
-    # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///../etl/pets.sqlite"
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    db.init_app(app)
-    return app
+# Remove tracking modifications
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+db = SQLAlchemy(app)
 
-app = create_app()
+from .models import Pet
 
 
 #################################################
-# API Routes
+# API Routes (start with '/api/')
 #################################################
 @app.route("/api/pals")
 def pals():
@@ -58,7 +61,7 @@ def pals():
 
 
 #################################################
-# Frontend Routes
+# Fontend Routes
 #################################################
 # create route that renders index.html template
 @app.route("/")
