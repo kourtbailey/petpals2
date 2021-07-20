@@ -17,7 +17,8 @@ app = Flask(__name__)
 #################################################
 # Database Setup
 #################################################
-
+# (https://help.heroku.com/ZKNTJQSK/
+# why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres)
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     os.environ.get('DATABASE_URL')
     .replace('postgres://', 'postgresql://', 1)
