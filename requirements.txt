@@ -1,3 +1,7 @@
+# these are used and
+pip>=21.1.3
+setuptools>= 57.4.0
+
 Flask-SQLAlchemy>=2.5.1
 Flask>=2.0.1
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
