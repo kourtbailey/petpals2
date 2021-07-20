@@ -59,14 +59,14 @@
   * The command `pip freeze` will generate a list of the currently-installed dependencies, which should be the same as requirements.txt.  To uninstall everything and start fresh, run `pip freeze | xargs pip uninstall -y` or just delete and re-cretate the virtualenv.
     * *It is really important to make sure that all of your requirements are in `requirements.txt`*
 
-* Next, to set up your environment variables, run the following command *_in bash_* (VSCode, git-bash, or MacOS terminal):
+* Next, to set up your environment variables, run the following command _in bash_ (VSCode, git-bash, or MacOS terminal):
   ```sh
   source ./env.sh
   ```
 
 ** *Note 1*: Windows `cmd` and PowerShell use legacy MS-DOS syntax that is out of scope for the bootcamp
 ** *Note 2*: you will need to re-run this command (as well as re-activating your venv) when you close your terminal
-** Within the file, we will set an environment variable, DATABASE_URL (on the server, Heroku will set this automatically...and change it periodically).
+** Within the file, we will set an environment variable, DATABASE_URL (on the server, Heroku will set this automatically and change it periodically for security).
 
 
 * You can test the application by running the following in your command line.
@@ -122,11 +122,12 @@
 
   ![The database connection string](Images/database_connection.png)
 
-* Heroku will automatically assign this URI string to the `DATABASE_URL` environment variable that is used within `app.py`. The code that is already in `app.py` will be able to use that environment variable to connect to the Heroku database (*NOTE* see the actual etl.py and app.py for modifications that need to be made to use SQLAlchemy > 1.4).
+* Heroku will automatically assign this URI string to the `DATABASE_URL` environment variable that is used within `app.py`. The code that is already in `app.py` will be able to use that environment variable to connect to the Heroku database (See [Heroku Help](https://help.heroku.com/ZKNTJQSK/why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres) for information on why we need to edit the variable to be compatible with recent versions of SQLAlchemy.
 
   ```python
   # DATABASE_URL will contain the database connection string:
-  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
+  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace('postgres://', 'postgresql://', 1)
+
   # Connects to the database using the app config
   db = SQLAlchemy(app)
   ```
