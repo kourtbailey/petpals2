@@ -59,7 +59,7 @@
   * The command `pip freeze` will generate a list of the currently-installed dependencies, which should be the same as requirements.txt.  To uninstall everything and start fresh, run `pip freeze | xargs pip uninstall -y` or just delete and re-cretate the virtualenv.
     * *It is really important to make sure that all of your requirements are in `requirements.txt`*
 
-* Next, to set up your environment variables, run the following command _in bash_ (VSCode, git-bash, or MacOS terminal):
+* Next, to set up your environment variables, run the following command *_in bash_* (VSCode, git-bash, or MacOS terminal):
   ```sh
   source ./env.sh
   ```
