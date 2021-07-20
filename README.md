@@ -102,24 +102,6 @@
 
   * Give your app an unique name, and leave the region as the default value.
 
-* On Heroku, go to the **Deploy** section of your app's homepage, and follow the steps to deploy the app.
-
-  * In the **Deployment method** section, select **GitHub**, and your GitHub username should appear in the **Search for a repository to connect to** field. You can type “Pet_Pals” in the field that says **repo-name** or use the **Search** button to search for your pet-pals repo containing your code from the previous step.
-
-    ![Heroku GitHub deploy](Images/Heroku_GitHub_connect.png)
-
-  * Once the repo has been selected, click on **Connect**.
-
-    ![Heroku connect](Images/Heroku_Connect.png)
-
-  * Once you see the "Your app was successfully deployed" message, you can click on **View** to launch your Pet Pals webpage.
-
-    ![Heroku successful deployment](Images/Heroku_Successful_Deploy.png)
-
-    * **Note:** The database has not been set up yet, so there is one more step before it is fully functioning.
-
-#### Part 4: Preparing the Database [TODO this will be changed]
-
 * After creating a new app on Heroku, navigate to **Resources**:
 
   ![Heroku adding postgres](Images/Heroku_add_postgres.png)
@@ -140,7 +122,7 @@
 
   ![The database connection string](Images/database_connection.png)
 
-* Heroku will automatically assign this URI string to the `DATABASE_URL` environment variable that is used within `app.py`. The code that is already in `app.py` will be able to use that environment variable to connect to the Heroku database.
+* Heroku will automatically assign this URI string to the `DATABASE_URL` environment variable that is used within `app.py`. The code that is already in `app.py` will be able to use that environment variable to connect to the Heroku database (*NOTE* see the actual etl.py and app.py for modifications that need to be made to use SQLAlchemy > 1.4).
 
   ```python
   # DATABASE_URL will contain the database connection string:
@@ -148,6 +130,24 @@
   # Connects to the database using the app config
   db = SQLAlchemy(app)
   ```
+
+
+#### Part 4: Deploying the Heroku App
+* On Heroku, go to the **Deploy** section of your app's homepage, and follow the steps to deploy the app.
+
+  * In the **Deployment method** section, select **GitHub**, and your GitHub username should appear in the **Search for a repository to connect to** field. You can type “Pet_Pals” in the field that says **repo-name** or use the **Search** button to search for your pet-pals repo containing your code from the previous step.
+
+    ![Heroku GitHub deploy](Images/Heroku_GitHub_connect.png)
+
+  * Once the repo has been selected, click on **Connect**.
+
+    ![Heroku connect](Images/Heroku_Connect.png)
+
+  * Once you see the "Your app was successfully deployed" message, you can click on **View** to launch your Pet Pals webpage.
+
+    ![Heroku successful deployment](Images/Heroku_Successful_Deploy.png)
+
+    * **Note:** The database has not been set up yet, so there is one more step before it is fully functioning.
 
 * Once your build is successful, you can open the application using **Open App** on the webpage.
 
