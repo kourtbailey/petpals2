@@ -7,8 +7,7 @@
 
 ### Deploying an application
 
-* In this activity, we will deploy a Pet Pals application to Heroku. The applications takes the name, latitude, and longitude of a pet and plot its location on a map. The actual code for the application is not nearly as important as the steps for deploying to Heroku. These steps can repeated for your own applications.
-** **Note**: to simplify loading the data, this app is read only.  For a working example where new pets can be added, see the [fix_add](https://github.com/kourtbailey/petpals2/tree/fix_add) branch.
+* In this activity, we will deploy a Pet Pals application to Heroku. The applications takes the name, latitude, and longitude of a pet and plot its location on a map. The actual code for the application is not nearly as important as the steps for deploying to Heroku. These steps can repeated for your own applications.  **Note**: to simplify loading the data, this app is read only.  For a working example where new pets can be added, see the [fix_add](https://github.com/kourtbailey/petpals2/tree/fix_add) branch.
 
 
 * This process consists of:
@@ -152,6 +151,6 @@
 
 * Once your build is successful, you can open the application using **Open App** on the webpage.
 
-* **Note:** When adding the pet's longitude, make sure you enter the negative value; otherwise, the data won't be populated on the US map.
+* **Note:** When adding the pet's longitude, you would need to enter the negative value; otherwise, the data won't be populated on the US map, **However**, to simplify loading the data, this app is read only.  For a working example where new pets can be added, see the [fix_add](https://github.com/kourtbailey/petpals2/tree/fix_add) branch.
 
 * In `app.py`, we are mixing front-end and API code in the same file for simplicity.  Be sure to keep all of your API routes together and prefixed with `/api/` and all of your frontend routes together with no prefix.
