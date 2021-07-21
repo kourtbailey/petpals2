@@ -14,6 +14,7 @@ TARGET_DATABASE_URL = (
     os.environ.get('DATABASE_URL')
     .replace('postgres://', 'postgresql://', 1)
     )
+CSV_EXAMPLE_FILE = ''
 
 
 # Read source file (this example happens to be .sqlite, but CSV is fine too)
@@ -21,6 +22,12 @@ def read_source():
     source_engine = create_engine(SOURCE_FILE)
     source_conn = source_engine.connect()
     source_df = pd.read_sql(TABLE_NAME, source_conn, index_col=INDEX_COLUMN)
+    return source_df
+
+
+# EXAMPLE: CSV is even simpler
+def read_source_csv_example():
+    source_df = pd.read_csv(CSV_EXAMPLE_FILE)
     return source_df
 
 
