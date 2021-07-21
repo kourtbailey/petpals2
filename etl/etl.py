@@ -8,13 +8,15 @@ TABLE_NAME = 'pets'
 INDEX_COLUMN = 'id'
 SOURCE_FILE = "sqlite:///etl/pets.sqlite"
 SOURCE_SQL = f"SELECT * FROM {TABLE_NAME};"
+
+CSV_EXAMPLE_FILE = ''
+
 # (https://help.heroku.com/ZKNTJQSK/
 # why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres)
 TARGET_DATABASE_URL = (
     os.environ.get('DATABASE_URL')
     .replace('postgres://', 'postgresql://', 1)
     )
-CSV_EXAMPLE_FILE = ''
 
 
 # Read source file (this example happens to be .sqlite, but CSV is fine too)
