@@ -6,10 +6,9 @@ from sqlalchemy import create_engine
 # Some of this might be best in a constants.py file and read here and in app.py
 TABLE_NAME = 'pets'
 INDEX_COLUMN = 'id'
-SOURCE_SQLITE_FILE = 'sqlite:///etl/pets.sqlite'
-SOURCE_CSV_FILE = 'etl/pets.csv'
+SOURCE_PATH = 'sqlite:///etl/pets.sqlite'
+# SOURCE_PATH = 'etl/pets.csv'
 SOURCE_SQL = f"SELECT * FROM {TABLE_NAME};"
-SOURCE_FILE_TYPE_TO_USE = 'csv'
 
 # (https://help.heroku.com/ZKNTJQSK/
 # why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres)
@@ -19,15 +18,19 @@ TARGET_DATABASE_URL = (
     )
 
 
-# Read source sqlite
-def read_source(file_type):
-    if file_type.lower() == 'csv':
-        source_df = pd.read_csv(SOURCE_CSV_FILE)
-    else:
-        source_engine = create_engine(SOURCE_SQLITE_FILE)
+# Read source data
+def read_source(source_path):
+    if source_path.startswith('sqlite'):
+        source_engine = create_engine(source_path)
         source_conn = source_engine.connect()
         source_df = pd.read_sql(
             TABLE_NAME, source_conn, index_col=INDEX_COLUMN)
+
+    elif source_path.lower().endswith('csv'):
+        source_df = pd.read_csv(source_path)
+
+    else:
+        raise TypeError("Unsupported file format")
 
     return source_df
 
@@ -45,5 +48,5 @@ def write_target(source_df):
 
 
 if __name__ == '__main__':
-    source_data = read_source(SOURCE_FILE_TYPE_TO_USE)
+    source_data = read_source(SOURCE_PATH)
     write_target(source_data)
