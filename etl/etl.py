@@ -6,10 +6,10 @@ from sqlalchemy import create_engine
 # Some of this might be best in a constants.py file and read here and in app.py
 TABLE_NAME = 'pets'
 INDEX_COLUMN = 'id'
-SOURCE_FILE = "sqlite:///etl/pets.sqlite"
+SOURCE_SQLITE_FILE = 'sqlite:///etl/pets.sqlite'
+SOURCE_CSV_FILE = 'etl/pets.csv'
 SOURCE_SQL = f"SELECT * FROM {TABLE_NAME};"
-
-CSV_EXAMPLE_FILE = ''
+SOURCE_FILE_TYPE_TO_USE = 'csv'
 
 # (https://help.heroku.com/ZKNTJQSK/
 # why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres)
@@ -19,17 +19,16 @@ TARGET_DATABASE_URL = (
     )
 
 
-# Read source file (this example happens to be .sqlite, but CSV is fine too)
-def read_source():
-    source_engine = create_engine(SOURCE_FILE)
-    source_conn = source_engine.connect()
-    source_df = pd.read_sql(TABLE_NAME, source_conn, index_col=INDEX_COLUMN)
-    return source_df
+# Read source sqlite
+def read_source(file_type):
+    if file_type.lower() == 'csv':
+        source_df = pd.read_csv(SOURCE_CSV_FILE)
+    else:
+        source_engine = create_engine(SOURCE_SQLITE_FILE)
+        source_conn = source_engine.connect()
+        source_df = pd.read_sql(
+            TABLE_NAME, source_conn, index_col=INDEX_COLUMN)
 
-
-# EXAMPLE: CSV is even simpler
-def read_source_csv_example():
-    source_df = pd.read_csv(CSV_EXAMPLE_FILE)
     return source_df
 
 
@@ -46,5 +45,5 @@ def write_target(source_df):
 
 
 if __name__ == '__main__':
-    source_data = read_source()
+    source_data = read_source(SOURCE_FILE_TYPE_TO_USE)
     write_target(source_data)
